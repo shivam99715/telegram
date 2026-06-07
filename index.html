@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<meta name="theme-color" content="#0a0e1a" />
+<meta name="description" content="Join BulkDeals on Telegram for instant alerts on Amazon & Flipkart loot deals, hidden coupons, flash sales, and price mistakes." />
+<title>BulkDeals — Amazon & Flipkart Loot Deals on Telegram</title>
+
+<!-- Open Graph -->
+<meta property="og:title" content="BulkDeals — Amazon & Flipkart Loot Deals on Telegram" />
+<meta property="og:description" content="Get instant alerts for loot deals, hidden coupons, and flash sales before they expire." />
+<meta property="og:type" content="website" />
+
+<!-- Favicon (inline SVG, no extra request) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232AABEE'/%3E%3Cpath d='M5 12l4 1 2-7 3 14 2-8 3 1' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+<style>
+  /* ---------- Reset & Base ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: #0a0e1a;
+    color: #e8eef7;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Reserve space for sticky CTA on mobile */
+    padding-bottom: 92px;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; }
+
+  :root {
+    --tg-blue: #2AABEE;
+    --tg-blue-dark: #1e8fc8;
+    --tg-blue-light: #5fc4f3;
+    --bg: #0a0e1a;
+    --bg-elev: #111728;
+    --bg-card: #161d33;
+    --border: #232b45;
+    --text: #e8eef7;
+    --text-dim: #9aa6bf;
+    --green: #00d68f;
+    --orange: #ff8a3d;
+    --red: #ff5470;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 18px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 28px 0 24px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(60% 50% at 50% 0%, rgba(42,171,238,0.18) 0%, transparent 60%),
+      radial-gradient(40% 35% at 10% 30%, rgba(42,171,238,0.10) 0%, transparent 70%),
+      radial-gradient(40% 35% at 90% 20%, rgba(0,214,143,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(42,171,238,0.10);
+    border: 1px solid rgba(42,171,238,0.25);
+    color: var(--tg-blue-light);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    margin-bottom: 18px;
+  }
+  .logo-dot {
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(0,214,143,0.6);
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(0,214,143,0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(0,214,143,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,214,143,0); }
+  }
+
+  h1 {
+    font-size: clamp(28px, 7vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 14px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  h1 .accent {
+    background: linear-gradient(90deg, var(--tg-blue-light), #6ad6f5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .subhead {
+    color: var(--text-dim);
+    font-size: clamp(15px, 4vw, 17px);
+    margin: 0 0 18px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .urgency {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, rgba(255,138,61,0.14), rgba(255,84,112,0.10));
+    border: 1px solid rgba(255,138,61,0.30);
+    color: #ffd2b0;
+    padding: 9px 14px;
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .urgency .dot {
+    width: 6px; height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--orange);
+    animation: pulse-orange 1.5s infinite;
+  }
+  @keyframes pulse-orange {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .social-proof {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin: 6px 0 22px;
+  }
+  .social-proof .check {
+    color: var(--green);
+    margin-right: 4px;
+  }
+
+  /* ---------- Example Deals (Screenshots) ---------- */
+  .examples-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-dim);
+    margin: 8px 0 14px;
+    text-align: center;
+    font-weight: 600;
+  }
+  .deals-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+  .deal-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .deal-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(42,171,238,0.06), transparent 40%);
+    pointer-events: none;
+  }
+  .deal-emoji {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .deal-item {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .deal-prices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+  }
+  .deal-price-now {
+    color: var(--green);
+    font-size: 16px;
+    font-weight: 800;
+  }
+  .deal-price-old {
+    color: var(--text-dim);
+    font-size: 12px;
+    text-decoration: line-through;
+  }
+  .deal-badge {
+    display: inline-block;
+    margin-top: 8px;
+    background: rgba(0,214,143,0.15);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+
+  /* ---------- Sections ---------- */
+  section {
+    padding: 36px 0;
+    border-top: 1px solid var(--border);
+  }
+  section:first-of-type { border-top: 0; }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(22px, 5.5vw, 28px);
+    font-weight: 800;
+    margin: 0 0 6px;
+    letter-spacing: -0.3px;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 14px;
+    margin: 0 0 22px;
+  }
+
+  /* What you get */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .feature {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 14px;
+    text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .feature:hover { transform: translateY(-2px); border-color: rgba(42,171,238,0.4); }
+  .feature-emoji { font-size: 32px; display: block; margin-bottom: 8px; }
+  .feature-title { font-size: 14px; font-weight: 700; color: var(--text); }
+  .feature-desc { font-size: 12.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.4; }
+
+  /* Recent deals carousel */
+  .carousel {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 2px 18px;
+    margin: 0 -18px;
+    padding-left: 18px;
+    padding-right: 18px;
+    scrollbar-width: none;
+  }
+  .carousel::-webkit-scrollbar { display: none; }
+  .screenshot {
+    flex: 0 0 78%;
+    max-width: 280px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+  .screenshot-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, #1a2342, #0e1428);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .screenshot-img .telegram-bubble {
+    background: #182533;
+    border: 1px solid #2c3a4f;
+    border-radius: 12px;
+    padding: 10px 12px;
+    width: 86%;
+    font-size: 12px;
+  }
+  .screenshot-img .telegram-bubble .sender {
+    color: var(--tg-blue-light);
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  .screenshot-img .telegram-bubble .msg { color: #e8eef7; }
+  .screenshot-img .telegram-bubble .meta { color: var(--text-dim); font-size: 10.5px; margin-top: 4px; }
+  .screenshot-img .placeholder-emoji {
+    font-size: 44px;
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    opacity: 0.9;
+  }
+  .screenshot-info {
+    padding: 12px 14px 14px;
+  }
+  .screenshot-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    font-size: 13px;
+  }
+  .price-row .label { color: var(--text-dim); }
+  .price-row .val-original { color: var(--text-dim); text-decoration: line-through; }
+  .price-row .val-deal { color: var(--green); font-weight: 800; }
+  .price-row .val-savings {
+    background: rgba(0,214,143,0.15);
+    color: var(--green);
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .carousel-dots .dot {
+    width: 6px; height: 6px;
+    background: var(--border);
+    border-radius: 50%;
+  }
+
+  /* Why members */
+  .benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .benefit {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .benefit-icon {
+    flex: 0 0 38px;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(0,214,143,0.15);
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+  }
+  .benefit-text { font-size: 15px; font-weight: 600; }
+  .benefit-sub { font-size: 12.5px; color: var(--text-dim); font-weight: 400; margin-top: 1px; }
+
+  /* Final CTA */
+  .final-cta {
+    text-align: center;
+    background: linear-gradient(180deg, rgba(42,171,238,0.10), rgba(42,171,238,0.02));
+    border-top: 1px solid var(--border);
+    padding: 40px 0 28px;
+  }
+  .final-cta h2 {
+    font-size: clamp(22px, 6vw, 30px);
+    font-weight: 800;
+    margin: 0 0 10px;
+    letter-spacing: -0.3px;
+  }
+  .final-cta p {
+    color: var(--text-dim);
+    margin: 0 0 22px;
+    font-size: 15px;
+  }
+
+  /* CTA buttons (inline, non-sticky) */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(180deg, var(--tg-blue) 0%, var(--tg-blue-dark) 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 17px;
+    padding: 16px 28px;
+    border-radius: 14px;
+    box-shadow:
+      0 10px 24px rgba(42,171,238,0.35),
+      0 0 0 1px rgba(255,255,255,0.06) inset;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    text-align: center;
+    min-width: 260px;
+    letter-spacing: 0.2px;
+  }
+  .cta-btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+  .cta-btn:active { transform: translateY(0); filter: brightness(0.95); }
+  .cta-btn .telegram-icon { width: 22px; height: 22px; }
+
+  .cta-large {
+    font-size: 19px;
+    padding: 18px 32px;
+    min-width: 280px;
+  }
+
+  /* Sticky bottom CTA (mobile) */
+  .sticky-cta {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 50;
+    background: rgba(10,14,26,0.92);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-top: 1px solid rgba(42,171,238,0.25);
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    transform: translateY(0);
+    transition: transform 0.25s ease;
+  }
+  .sticky-cta .cta-btn {
+    width: 100%;
+    min-width: 0;
+    font-size: 16px;
+    padding: 14px 18px;
+    border-radius: 12px;
+  }
+  .sticky-cta.hidden { transform: translateY(110%); }
+  .sticky-cta .sticky-sub {
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+    padding: 24px 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--text-dim); text-decoration: underline; }
+
+  /* Hide sticky CTA on very wide screens where inline CTA is plenty */
+  @media (min-width: 768px) {
+    body { padding-bottom: 0; }
+    .sticky-cta { display: none; }
+  }
+
+  /* Larger phones / small tablets */
+  @media (min-width: 480px) {
+    .features { grid-template-columns: repeat(4, 1fr); }
+    .feature-emoji { font-size: 36px; }
+    .screenshot { flex-basis: 45%; }
+  }
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+// Replace PIXEL_ID below with your Meta Pixel ID
+fbq('init', 'PIXEL_ID');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1" alt="" /></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- Google tag (gtag.js) — GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // Replace G-MEASUREMENT_ID below with your GA4 Measurement ID
+  gtag('config', 'G-MEASUREMENT_ID');
+</script>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container" style="position: relative;">
+    <div class="logo">
+      <span class="logo-dot"></span>
+      BulkDeals • Live
+    </div>
+
+    <h1>🔥 Stop Paying Full Price on <span class="accent">Amazon &amp; Flipkart</span></h1>
+
+    <p class="subhead">
+      Join BulkDeals and get instant alerts for loot deals, hidden coupons, price mistakes, flash sales, and limited-time discounts before they expire.
+    </p>
+
+    <div class="urgency" role="status" aria-live="polite">
+      <span class="dot"></span>
+      ⚡ Deals shared today may disappear within minutes.
+    </div>
+
+    <p class="social-proof"><span class="check">✅</span> Thousands of shoppers already saving money daily</p>
+
+    <!-- Example deals shown as cards (acts as screenshot placeholders above the fold) -->
+    <div class="examples-title">Real deals shared in the channel</div>
+    <div class="deals-row" aria-label="Example deals">
+      <div class="deal-card">
+        <span class="deal-emoji" aria-hidden="true">🎧</span>
+        <div class="deal-item">AirPods</div>
+        <div class="deal-prices">
+          <span class="deal-price-now">₹1,999</span>
+          <span class="deal-price-old">₹8,999</span>
+        </div>
+        <span class="deal-badge">78% OFF</span>
+      </div>
+      <div class="deal-card">
+        <span class="deal-emoji" aria-hidden="true">👟</span>
+        <div class="deal-item">Shoes</div>
+        <div class="deal-prices">
+          <span class="deal-price-now">₹299</span>
+          <span class="deal-price-old">₹1,499</span>
+        </div>
+        <span class="deal-badge">80% OFF</span>
+      </div>
+      <div class="deal-card">
+        <span class="deal-emoji" aria-hidden="true">🔋</span>
+        <div class="deal-item">Power Bank</div>
+        <div class="deal-prices">
+          <span class="deal-price-now">₹99</span>
+          <span class="deal-price-old">₹999</span>
+        </div>
+        <span class="deal-badge">90% OFF</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- What You Get Inside -->
+<section id="features">
+  <div class="container">
+    <h2 class="section-title">What You Get Inside</h2>
+    <p class="section-sub">Hand-picked deals posted the moment they go live.</p>
+
+    <div class="features">
+      <div class="feature">
+        <span class="feature-emoji" aria-hidden="true">💸</span>
+        <div class="feature-title">Loot Deals</div>
+        <div class="feature-desc">Crazy price mistakes shared first</div>
+      </div>
+      <div class="feature">
+        <span class="feature-emoji" aria-hidden="true">🎟️</span>
+        <div class="feature-title">Hidden Coupons</div>
+        <div class="feature-desc">Working codes most people miss</div>
+      </div>
+      <div class="feature">
+        <span class="feature-emoji" aria-hidden="true">⚡</span>
+        <div class="feature-title">Flash Sale Alerts</div>
+        <div class="feature-desc">Get notified the second it starts</div>
+      </div>
+      <div class="feature">
+        <span class="feature-emoji" aria-hidden="true">🛒</span>
+        <div class="feature-title">Amazon + Flipkart</div>
+        <div class="feature-desc">All top offers in one place</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recent Deals Shared -->
+<section id="recent">
+  <div class="container">
+    <h2 class="section-title">Recent Deals Shared</h2>
+    <p class="section-sub">Screenshots from the channel — swipe to view.</p>
+
+    <div class="carousel" id="dealsCarousel" aria-label="Recent deals carousel">
+      <!-- Card 1 -->
+      <div class="screenshot">
+        <div class="screenshot-img">
+          <div class="telegram-bubble">
+            <div class="sender">BulkDeals</div>
+            <div class="msg">🎧 boAt Airdopes 141 — ₹599 (MRP ₹4,490). Use code <b>BOAT150</b> at checkout. Link in bio.</div>
+            <div class="meta">Today, 10:42 AM · 2,143 views</div>
+          </div>
+          <span class="placeholder-emoji" aria-hidden="true">🎧</span>
+        </div>
+        <div class="screenshot-info">
+          <div class="screenshot-title">boAt Airdopes 141</div>
+          <div class="price-row"><span class="label">Original</span><span class="val-original">₹4,490</span></div>
+          <div class="price-row"><span class="label">Deal Price</span><span class="val-deal">₹599</span></div>
+          <div class="price-row"><span class="label">Savings</span><span class="val-savings">87% OFF</span></div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="screenshot">
+        <div class="screenshot-img">
+          <div class="telegram-bubble">
+            <div class="sender">BulkDeals</div>
+            <div class="msg">👟 Asian Shoes — ₹299 only (was ₹1,499). Sizes 7–10 available. Limited stock!</div>
+            <div class="meta">Today, 9:18 AM · 1,820 views</div>
+          </div>
+          <span class="placeholder-emoji" aria-hidden="true">👟</span>
+        </div>
+        <div class="screenshot-info">
+          <div class="screenshot-title">Asian Running Shoes</div>
+          <div class="price-row"><span class="label">Original</span><span class="val-original">₹1,499</span></div>
+          <div class="price-row"><span class="label">Deal Price</span><span class="val-deal">₹299</span></div>
+          <div class="price-row"><span class="label">Savings</span><span class="val-savings">80% OFF</span></div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="screenshot">
+        <div class="screenshot-img">
+          <div class="telegram-bubble">
+            <div class="sender">BulkDeals</div>
+            <div class="msg">🔋 Ambrane 10000mAh Power Bank — ₹99 (MRP ₹999). Lightning deal, ends in 12 min.</div>
+            <div class="meta">Yesterday, 8:02 PM · 4,506 views</div>
+          </div>
+          <span class="placeholder-emoji" aria-hidden="true">🔋</span>
+        </div>
+        <div class="screenshot-info">
+          <div class="screenshot-title">Ambrane 10000mAh Power Bank</div>
+          <div class="price-row"><span class="label">Original</span><span class="val-original">₹999</span></div>
+          <div class="price-row"><span class="label">Deal Price</span><span class="val-deal">₹99</span></div>
+          <div class="price-row"><span class="label">Savings</span><span class="val-savings">90% OFF</span></div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="screenshot">
+        <div class="screenshot-img">
+          <div class="telegram-bubble">
+            <div class="sender">BulkDeals</div>
+            <div class="msg">⌚ Fire-Boltt Phoenix — ₹499 (MRP ₹6,999). Apply coupon <b>FB200</b> for extra off.</div>
+            <div class="meta">Yesterday, 6:45 PM · 3,109 views</div>
+          </div>
+          <span class="placeholder-emoji" aria-hidden="true">⌚</span>
+        </div>
+        <div class="screenshot-info">
+          <div class="screenshot-title">Fire-Boltt Phoenix Smartwatch</div>
+          <div class="price-row"><span class="label">Original</span><span class="val-original">₹6,999</span></div>
+          <div class="price-row"><span class="label">Deal Price</span><span class="val-deal">₹499</span></div>
+          <div class="price-row"><span class="label">Savings</span><span class="val-savings">93% OFF</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-dots" aria-hidden="true">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- Why Members Join -->
+<section id="why">
+  <div class="container">
+    <h2 class="section-title">Why Members Join</h2>
+    <p class="section-sub">Real reasons smart shoppers stay subscribed.</p>
+
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">✔</div>
+        <div>
+          <div class="benefit-text">Save Money</div>
+          <div class="benefit-sub">Pay a fraction of the MRP on every order</div>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">⚡</div>
+        <div>
+          <div class="benefit-text">Get Deals Before Others</div>
+          <div class="benefit-sub">Be first before stock runs out</div>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🆓</div>
+        <div>
+          <div class="benefit-text">Completely Free</div>
+          <div class="benefit-sub">No fees, no paid plans, ever</div>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🚫</div>
+        <div>
+          <div class="benefit-text">No Spam</div>
+          <div class="benefit-sub">Only real, working deals — nothing else</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta" id="join">
+  <div class="container">
+    <h2>The Next Deal Could Be Gone In 5 Minutes</h2>
+    <p>Join now and get instant access to today's best offers.</p>
+
+    <a class="cta-btn cta-large" href="https://t.me/+8LCt814OT3w1NzNl" target="_blank" rel="noopener" data-cta="final">
+      <svg class="telegram-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+      </svg>
+      Join BulkDeals Now
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    Not affiliated with Amazon, Flipkart or Telegram. All trademarks belong to their respective owners.<br/>
+    Deals shared are user-reported and availability may vary. By joining, you agree to receive deal alerts from BulkDeals.
+  </div>
+</footer>
+
+<!-- Sticky Telegram CTA (mobile) -->
+<div class="sticky-cta" id="stickyCta" role="region" aria-label="Join BulkDeals on Telegram">
+  <a class="cta-btn" href="https://t.me/+8LCt814OT3w1NzNl" target="_blank" rel="noopener" data-cta="sticky">
+    <svg class="telegram-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+    </svg>
+    🚀 Join BulkDeals on Telegram
+  </a>
+  <span class="sticky-sub">Free · No spam · Instant alerts</span>
+</div>
+
+<script>
+  // ---------- Click Tracking (Meta Pixel Lead + GA4) ----------
+  // Fire Lead event on every Telegram CTA click (above the fold, final, sticky).
+  // Also forward as a GA4 'generate_lead' event.
+  document.querySelectorAll('a[data-cta]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      try {
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', {
+            content_name: 'Telegram Join',
+            content_category: el.getAttribute('data-cta') || 'unknown'
+          });
+        }
+      } catch (e) { /* swallow - tracking should never break UX */ }
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', {
+            method: 'telegram_cta',
+            cta_placement: el.getAttribute('data-cta') || 'unknown',
+            link_url: el.href
+          });
+        }
+      } catch (e) { /* swallow */ }
+    });
+  });
+
+  // ---------- Hide sticky CTA when user reaches the final inline CTA ----------
+  (function () {
+    var sticky = document.getElementById('stickyCta');
+    var finalCta = document.getElementById('join');
+    if (!sticky || !finalCta) return;
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          sticky.classList.add('hidden');
+        } else {
+          sticky.classList.remove('hidden');
+        }
+      });
+    }, { rootMargin: '-80px 0px 0px 0px', threshold: 0.1 });
+    io.observe(finalCta);
+  })();
+</script>
+
+</body>
+</html>
